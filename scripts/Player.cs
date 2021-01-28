@@ -78,6 +78,28 @@ public class Player : Area2D
 	{
 		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", !GetNode<CollisionShape2D>("CollisionShape2D").Disabled);
 	}
+
+	public enum PlayerSkins
+	{
+		REGULAR
+	}
+
+	public void SetSkin(PlayerSkins skin)
+	{
+		String path = "res://assets/art/skins/" + skin.ToString().ToLower() + "/";
+
+		var sprite = GetNode<AnimatedSprite>("AnimatedSprite").Frames;
+
+		var up1 = ResourceLoader.Load<Texture>(path + "up1.png");
+		var up2 = ResourceLoader.Load<Texture>(path + "up2.png");
+		var walk1 = ResourceLoader.Load<Texture>(path + "walk1.png");
+		var walk2 = ResourceLoader.Load<Texture>(path + "walk2.png");
+		
+		sprite.SetFrame("up", 0, up1);
+		sprite.SetFrame("up", 1, up2);
+		sprite.SetFrame("walk", 0, walk1);
+		sprite.SetFrame("walk", 1, walk2);
+	}
 	
 	public void OnPlayerBodyEntered(PhysicsBody2D body)
 	{

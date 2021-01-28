@@ -21,6 +21,8 @@ public class Main : Node
 		Settings.PowerupCollected += ActivatePowerup;
 
 		UpdateValuesFromSettings();
+		
+		GetNode<Player>("Player").SetSkin(Player.PlayerSkins.REGULAR);
 	}
 
 	public override void _Input(InputEvent @event)
