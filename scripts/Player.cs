@@ -81,7 +81,9 @@ public class Player : Area2D
 
 	public enum PlayerSkins
 	{
-		REGULAR
+		REGULAR,
+		DARK,
+		LIGHT_BLUE
 	}
 
 	public void SetSkin(PlayerSkins skin)
