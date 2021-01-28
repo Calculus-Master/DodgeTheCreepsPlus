@@ -1,0 +1,8 @@
+/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/bin/Debug/Godot Guide.dll
+/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/bin/Debug/Godot Guide.pdb
+/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/obj/Debug/Godot Guide.csprojAssemblyReference.cache
+/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/obj/Debug/Godot Guide.AssemblyInfoInputs.cache
+/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/obj/Debug/Godot Guide.AssemblyInfo.cs
+/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/obj/Debug/Godot Guide.csproj.CoreCompileInputs.cache
+/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/obj/Debug/Godot Guide.dll
+/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/obj/Debug/Godot Guide.pdb
