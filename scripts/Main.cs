@@ -141,7 +141,8 @@ public class Main : Node
 	{
 		_powerupActive = true;
 		_powerupExists = false;
-		
+
+		bool needsTimer = true;
 		GetNode<Powerup>("Powerup").Despawn();
 
 		var HUD = GetNode<HUD>("HUD");
@@ -157,6 +158,7 @@ public class Main : Node
 			{
 				GetNode<Player>("Player").DeathSkips++;
 				HUD.ShowMessage("Powerup Collected: Skip Death!");
+				needsTimer = false;
 			} break;
 			case PowerupType.EXTRA_SCORE:
 			{
@@ -165,7 +167,7 @@ public class Main : Node
 			} break;
 		}
 		
-		GetNode<Timer>("PowerupTimer").Start();
+		if(needsTimer) GetNode<Timer>("PowerupTimer").Start();
 	}
 
 	private void OnPowerupTimerTimeout()
