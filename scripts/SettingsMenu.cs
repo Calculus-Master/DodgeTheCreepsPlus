@@ -12,6 +12,7 @@ public class SettingsMenu : ColorRect
 	public void OnPlayerSpeedSliderChanged(float playerSpeed)
 	{
 		Settings.PlayerSpeed = 400 + (int) (15 * (playerSpeed - 50));
+		Settings.PlayerSpeed = Mathf.Clamp(Settings.PlayerSpeed, Settings.PlayerSpeedLimits[0], Settings.PlayerSpeedLimits[1]);
 		Settings.PublishSettingsChangedEvent();
 	}
 

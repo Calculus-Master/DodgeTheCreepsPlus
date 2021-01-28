@@ -29,6 +29,7 @@ public class Settings : Node
 	
 	//Setting Values
 	public static int PlayerSpeed = 400;
+	public static int[] PlayerSpeedLimits = {50, 750};
 
 	public static int Volume = 0;
 
