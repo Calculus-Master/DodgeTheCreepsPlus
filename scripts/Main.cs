@@ -187,13 +187,9 @@ public class Main : Node
 				needsTimer = false;
 			} break;
 		}
-		
-		if(needsTimer) GetNode<Timer>("PowerupTimer").Start();
-		else
-		{
-			_powerupExists = false;
-			_powerupActive = false;
-		}
+
+		if (needsTimer) GetNode<Timer>("PowerupTimer").Start();
+		else _powerupActive = false;
 	}
 
 	private void OnPowerupTimerTimeout()
@@ -229,24 +225,24 @@ public class Main : Node
 
 		//Random Events go here
 		if(_score % 5 != 0 || !Settings.EventsEnabled) return;
-		else if(RandRange(0, 100) < 1)
+		else if(RandRange(0, 100) < 10)
 		{
 			HUD.ShowMessage("Mob Spawns Increased!");
 			GetNode<Timer>("MobTimer").WaitTime = GetNode<Timer>("MobTimer").WaitTime / 2;
 		}
-		else if(RandRange(0, 100) < 1)
+		else if(RandRange(0, 100) < 10)
 		{
 			HUD.ShowMessage("Mob Spawns Decreased!");
 			GetNode<Timer>("MobTimer").WaitTime = GetNode<Timer>("MobTimer").WaitTime * 2;
 		}
-		else if(RandRange(0, 1000) < 1)
+		else if(RandRange(0, 1000) < 10)
 		{
 			HUD.ShowMessage("2x Score!");
 			_scoreMultiplier = true;
 			
 			GetNode<Timer>("EventTimer").Start();
 		}
-		else if(RandRange(0, 100) < 1)
+		else if(RandRange(0, 100) < 10)
 		{
 			HUD.ShowMessage("Speed Change!");
 			Settings.PlayerSpeed = (int)(Settings.PlayerSpeed * (_random.NextDouble() * 2));
@@ -266,11 +262,5 @@ public class Main : Node
 		GetNode<Timer>("ScoreTimer").Start();
 
 		_gameRunning = true;
-	}
-
-	private void onVolumeSliderChanged(float value)
-	{
-		GetNode<AudioStreamPlayer>("Music").VolumeDb = value;
-		GetNode<AudioStreamPlayer>("DeathSound").VolumeDb = value;
 	}
 }
