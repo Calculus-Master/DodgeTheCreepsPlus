@@ -11,6 +11,7 @@ public class Main : Node
 	private bool _powerupActive;
 	private bool _powerupExists;
 	private bool _eventValid;
+	private bool _pauseActive;
 	
 	private Random _random = new Random();
 	
@@ -102,6 +103,9 @@ public class Main : Node
 	
 	private void OnMobTimerTimeout()
 	{
+		//If the respective Powerup is activated, don't spawn mobs
+		if (_pauseActive) return;
+		
 		// Choose a random location on Path2D.
 		var mobSpawnLocation = GetNode<PathFollow2D>("MobPath/MobSpawnLocation");
 		mobSpawnLocation.Offset = _random.Next();
@@ -134,7 +138,9 @@ public class Main : Node
 	private enum PowerupType
 	{
 		AVOID_DEATH,
-		EXTRA_SCORE
+		EXTRA_SCORE,
+		PAUSE,
+		CLEAR
 	}
 	
 	private void ActivatePowerup()
@@ -149,7 +155,9 @@ public class Main : Node
 		PowerupType chosen;
 
 		var r = RandRange(0, 10);
-		if (r < 4) chosen = PowerupType.AVOID_DEATH;
+		if (r < 1) chosen = PowerupType.CLEAR;
+		else if (r < 3) chosen = PowerupType.AVOID_DEATH;
+		else if (r < 5) chosen = PowerupType.PAUSE;
 		else chosen = PowerupType.EXTRA_SCORE;
 
 		switch (chosen)
@@ -165,6 +173,18 @@ public class Main : Node
 				_scoreMultiplier = true;
 				HUD.ShowMessage("Powerup Collected: 2x Score!");
 			} break;
+			case PowerupType.PAUSE:
+			{
+				_pauseActive = true;
+				HUD.ShowMessage("Powerup Collected: Mob Spawns Disabled!");
+				GetNode<Timer>("PowerupTimer").WaitTime = 2;
+			} break;
+			case PowerupType.CLEAR:
+			{
+				GetTree().CallGroup("mobs", "queue_free");
+				HUD.ShowMessage("Powerup Collected: Mobs Cleared!");
+				needsTimer = false;
+			} break;
 		}
 		
 		if(needsTimer) GetNode<Timer>("PowerupTimer").Start();
@@ -175,8 +195,11 @@ public class Main : Node
 		_powerupActive = false;
 		
 		_scoreMultiplier = false;
+
+		_pauseActive = false;
 		
 		GetNode<HUD>("HUD").ShowMessage("Powerup Expired!");
+		GetNode<Timer>("PowerupTimer").WaitTime = 5;
 	}
 	
 	private void OnScoreTimerTimeout()
