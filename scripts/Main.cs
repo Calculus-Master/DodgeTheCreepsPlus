@@ -172,6 +172,7 @@ public class Main : Node
 			{
 				_scoreMultiplier = true;
 				HUD.ShowMessage("Powerup Collected: 2x Score!");
+				GetNode<Timer>("PowerupTimer").WaitTime = 10;
 			} break;
 			case PowerupType.PAUSE:
 			{
@@ -188,6 +189,11 @@ public class Main : Node
 		}
 		
 		if(needsTimer) GetNode<Timer>("PowerupTimer").Start();
+		else
+		{
+			_powerupExists = false;
+			_powerupActive = false;
+		}
 	}
 
 	private void OnPowerupTimerTimeout()

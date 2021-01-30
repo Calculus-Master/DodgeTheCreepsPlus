@@ -14,7 +14,7 @@
         "outputPath": "/Users/saptarshimallick/Documents/Coding/GodotGuide/.mono/temp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/saptarshimallick/.nuget/NuGet/NuGet.Config"
+          "/Users/saptarshimallick/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net472"
@@ -24,7 +24,6 @@
         },
         "frameworks": {
           "net472": {
-            "targetAlias": "net472",
             "projectReferences": {}
           }
         },
@@ -36,7 +35,6 @@
       },
       "frameworks": {
         "net472": {
-          "targetAlias": "net472",
           "runtimeIdentifierGraphPath": "/Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/Current/bin/RuntimeIdentifierGraph.json"
         }
       }
